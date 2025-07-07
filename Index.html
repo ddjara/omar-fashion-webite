@@ -1,0 +1,771 @@
+p<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omar Fashion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      --accent: #ff6b9d;
+      --secondary: #4ecdc4;
+      --tertiary: #45b7d1;
+      --dark: #2c3e50;
+      --light: #f8f9fa;
+      --gray: #6c757d;
+      --gold: #ffd700;
+      --coral: #ff7675;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--main-bg);
+      color: var(--dark);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(135deg, rgba(255, 107, 157, 0.95) 0%, rgba(78, 205, 196, 0.95) 100%);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3vw;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      background: #fff;
+      object-fit: cover;
+    }
+
+    .logo h1 {
+      font-size: 2.1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      position: relative;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+      text-align: center;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(24, 24, 24, 0.45);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      padding: 7rem 2rem 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 6px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-content p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      color: #ffe6e6;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      padding: 1rem 2rem;
+      background: transparent;
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      border: 2px solid var(--gold);
+    }
+    
+    .cta-btn:hover {
+      background: var(--gold);
+      color: var(--dark);
+      transform: translateY(-3px);
+    }
+    
+    .cta-btn.secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+    
+    .cta-btn.secondary:hover {
+      background: var(--gold);
+      color: var(--dark);
+    }
+
+    .section {
+      padding: 5rem 2vw 3rem 2vw;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section h3 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      background: linear-gradient(45deg, var(--accent), var(--tertiary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      padding: 0 0 2rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(255, 107, 157, 0.15);
+      background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-item .overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(0deg, rgba(24, 24, 24, 0.7) 80%, rgba(255, 255, 255, 0));
+      color: #fff;
+      padding: 1.2rem 1rem 1.2rem 1rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      width: 100%;
+      text-align: left;
+      border-radius: 0 0 18px 18px;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover {
+      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+      transform: translateY(-10px) scale(1.02);
+      border: 2px solid var(--accent);
+      z-index: 2;
+    }
+
+    .about {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+      line-height: 1.7;
+    }
+
+    .footer-social {
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      margin: 0 15px;
+      color: #fff;
+      font-size: 2.2rem;
+      transition: all 0.3s ease;
+      vertical-align: middle;
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    .footer-social a:hover {
+      color: var(--gold);
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    footer {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--accent) 50%, var(--secondary) 100%);
+      color: #fff;
+      padding: 3rem 1rem 1.5rem 1rem;
+      text-align: center;
+      border-top: none;
+      margin-top: 4rem;
+    }
+
+    .footer-contact {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 0.7rem;
+    }
+
+    .footer-contact a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .footer-contact a:hover {
+      color: #fff;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: #25d366;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-float svg {
+      width: 30px;
+      height: 30px;
+      fill: white;
+    }
+
+
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+    }
+    
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      max-height: 90%;
+    }
+    
+    .modal img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+    
+    .close {
+      position: absolute;
+      top: 15px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover {
+      opacity: 0.7;
+    }
+
+    /* Desktop Large */
+    @media (min-width: 1200px) {
+      .gallery {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .section {
+        max-width: 1400px;
+      }
+    }
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .logo h1 {
+        font-size: 1.8rem;
+      }
+      .hero-content h2 {
+        font-size: 2.8rem;
+      }
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+      .section {
+        padding: 4rem 3vw 2rem 3vw;
+      }
+    }
+
+    /* Mobile Large */
+    @media (max-width: 768px) {
+      header {
+        padding: 1rem 4vw;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      }
+      .logo {
+        margin-bottom: 1rem;
+      }
+      .logo h1 {
+        font-size: 1.6rem;
+      }
+      nav {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav a {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+      }
+      .hero-content {
+        padding: 8rem 1.5rem 3rem 1.5rem;
+      }
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1.1rem;
+      }
+      .section h3 {
+        font-size: 2rem;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0;
+      }
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+    }
+
+    /* Mobile Small */
+    @media (max-width: 480px) {
+      header {
+        padding: 0.8rem 2vw;
+      }
+      .logo img {
+        width: 40px;
+        height: 40px;
+      }
+      .logo h1 {
+        font-size: 1.4rem;
+      }
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+      }
+      .hero-content {
+        padding: 7rem 1rem 2rem 1rem;
+      }
+      .hero-content h2 {
+        font-size: 1.8rem;
+        line-height: 1.2;
+      }
+      .hero-content p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem 2rem 1rem;
+      }
+      .section h3 {
+        font-size: 1.6rem;
+      }
+      .about {
+        font-size: 1rem;
+      }
+      .gallery {
+        gap: 1rem;
+      }
+      .gallery-item:hover {
+        transform: translateY(-5px) scale(1.01);
+      }
+      .footer-social a {
+        font-size: 1.5rem;
+        margin: 0 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <img src="https://i.imgur.com/8Km9tLL.png" alt="Omar Fashion Logo">
+      <h1>Omar Fashion</h1>
+    </div>
+    <nav>
+      <a href="Index.html">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="gallery.html">Portfolio</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Order</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h2>Custom Tailoring & Fashion Design</h2>
+      <p>From concept to creation - we design and sew custom-fit clothing tailored perfectly for you. Your vision, our craftsmanship.</p>
+      <div class="cta-buttons">
+        <a href="#services" class="cta-btn">Our Services</a>
+        <a href="#contact" class="cta-btn secondary">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section" style="background: url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover; position: relative; border-radius: 20px; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255, 255, 255, 0.85); z-index: 1;"></div>
+    <div style="position: relative; z-index: 2;">
+      <h3>About Omar Fashion</h3>
+      <div class="about">
+        We are a premier custom tailoring house in Spintex, Accra, specializing in bespoke clothing for men and women. Every piece is individually designed, measured, and handcrafted to your exact specifications. From traditional Ghanaian attire to modern fashion, we bring your vision to life with precision and artistry.
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section">
+    <h3>Our Services</h3>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Custom Suits">
+        <div class="overlay">Custom Suits & Formal Wear</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Wedding Dresses">
+        <div class="overlay">Wedding & Evening Gowns</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1469398715555-76331a6c7c9b?auto=format&fit=crop&w=600&q=80" alt="Traditional Wear">
+        <div class="overlay">Traditional Ghanaian Attire</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Alterations">
+        <div class="overlay">Alterations & Repairs</div>
+      </div>
+    </div>
+    <a href="#contact" class="cta-btn" style="margin-top: 2rem; display: inline-block;">Request Quote</a>
+  </section>
+
+  <section id="process" class="section">
+    <h3>Our Process</h3>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Consultation">
+        <div class="overlay">1. Consultation & Design</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=80" alt="Measurements">
+        <div class="overlay">2. Precise Measurements</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?auto=format&fit=crop&w=600&q=80" alt="Crafting">
+        <div class="overlay">3. Expert Crafting</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="Final Fitting">
+        <div class="overlay">4. Final Fitting & Delivery</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <h3>Our Portfolio</h3>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=600&q=80" alt="Men's Fashion">
+        <div class="overlay">Men's Fashion</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Women's Fashion">
+        <div class="overlay">Women's Fashion</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Kaftan">
+        <div class="overlay">Kaftan Styles</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=600&q=80" alt="Dress Design">
+        <div class="overlay">Dress Designs</div>
+      </div>
+    </div>
+    <a href="gallery.html" class="cta-btn" style="margin-top: 2rem; display: inline-block;">View Full Portfolio</a>
+  </section>
+
+
+
+  <section id="men" class="section">
+    <h3>Men's Collection</h3>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" alt="Men's Suit">
+        <div class="overlay">Classic Suit</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Men's Streetwear">
+        <div class="overlay">Urban Streetwear</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1469398715555-76331a6c7c9b?auto=format&fit=crop&w=600&q=80" alt="Men's Kaftan">
+        <div class="overlay">Modern Kaftan</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80" alt="Men's Formal Wear">
+        <div class="overlay">Executive Formal</div>
+      </div>
+    </div>
+    <a href="men.html" class="cta-btn" style="margin-top: 2rem; display: inline-block; background: transparent; color: var(--accent); border: 2px solid var(--accent);">View More Men's Collection</a>
+  </section>
+
+  <section id="women" class="section">
+    <h3>Women's Collection</h3>
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Women's Gown">
+        <div class="overlay">Elegant Gown</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=600&q=80" alt="Women's Dress">
+        <div class="overlay">Modern Dress</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Women's Officewear">
+        <div class="overlay">Chic Officewear</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?auto=format&fit=crop&w=600&q=80" alt="Women's Evening Wear">
+        <div class="overlay">Evening Elegance</div>
+      </div>
+    </div>
+    <a href="women.html" class="cta-btn" style="margin-top: 2rem; display: inline-block; background: transparent; color: var(--accent); border: 2px solid var(--accent);">View More Women's Collection</a>
+  </section>
+
+  <section class="section">
+    <h3>Find Us</h3>
+    <p style="margin-bottom: 2rem; font-size: 1.1rem;">Visit our store in Spintex, Accra</p>
+    <div style="max-width:100%; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 8px 24px rgba(255,107,157,0.15);">
+      <iframe src="https://www.google.com/maps?q=Spintex,+Accra,+Ghana&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-social">
+      <a href="https://instagram.com/omarfashion" target="_blank" aria-label="Instagram">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.056 1.97.24 2.43.41.59.21 1.01.46 1.45.9.44.44.69.86.9 1.45.17.46.354 1.26.41 2.43.058 1.266.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.41 2.43-.21.59-.46 1.01-.9 1.45-.44.44-.86.69-1.45.9-.46.17-1.26.354-2.43.41-1.266.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.43-.41-.59-.21-1.01-.46-1.45-.9-.44-.44-.69-.86-.9-1.45-.17-.46-.354-1.26-.41-2.43C2.212 15.584 2.2 15.2 2.2 12s.012-3.584.07-4.85c.056-1.17.24-1.97.41-2.43.21-.59.46-1.01.9-1.45.44-.44.86-.69 1.45-.9.46-.17 1.26-.354 2.43-.41C8.416 2.212 8.8 2.2 12 2.2zm0-2.2C8.736 0 8.332.012 7.052.07 5.77.128 4.87.312 4.13.54c-.74.228-1.37.53-2.01 1.17-.64.64-.942 1.27-1.17 2.01C.312 4.87.128 5.77.07 7.052.012 8.332 0 8.736 0 12c0 3.264.012 3.668.07 4.948.058 1.282.242 2.182.47 2.922.228.74.53 1.37 1.17 2.01.64.64 1.27.942 2.01 1.17.74.228 1.64.412 2.922.47C8.332 23.988 8.736 24 12 24s3.668-.012 4.948-.07c1.282-.058 2.182-.242 2.922-.47.74-.228 1.37-.53 2.01-1.17.64-.64.942-1.27 1.17-2.01.228-.74.412-1.64.47-2.922.058-1.28.07-1.684.07-4.948s-.012-3.668-.07-4.948c-.058-1.282-.242-2.182-.47-2.922-.228-.74-.53-1.37-1.17-2.01-.64-.64-1.27-.942-2.01-1.17-.74-.228-1.64-.412-2.922-.47C15.668.012 15.264 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm7.844-10.406a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z" />
+        </svg>
+      </a>
+      <a href="https://facebook.com/omarfashion" target="_blank" aria-label="Facebook">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22.675 0h-21.35C.595 0 0 .592 0 1.326v21.348C0 23.408.595 24 1.325 24h11.495v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.797.143v3.24l-1.918.001c-1.504 0-1.797.715-1.797 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116C23.406 24 24 23.408 24 22.674V1.326C24 .592 23.406 0 22.675 0" />
+        </svg>
+      </a>
+      <a href="https://wa.me/233248747238" target="_blank" aria-label="WhatsApp">
+        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.26-1.64A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22c-1.85 0-3.68-.5-5.26-1.44l-.37-.22-3.72.98.99-3.62-.24-.38C2.5 15.68 2 13.85 2 12 2 6.48 6.48 2 12 2c2.21 0 4.29.72 6.01 2.05A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.2-7.4c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.34-.26.27-1 1-.97 2.44.03 1.44 1.03 2.84 1.18 3.04.15.2 2.03 3.1 5.03 4.23.7.24 1.24.38 1.67.49.7.18 1.34.15 1.85.09.56-.07 1.65-.67 1.88-1.32.23-.65.23-1.21.16-1.32-.07-.11-.25-.18-.53-.32z" />
+        </svg>
+      </a>
+      <a href="https://tiktok.com/@omarfashion" target="_blank" aria-label="TikTok">
+        <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+      </a>
+    </div>
+    <div class="footer-contact">
+      <strong>Custom Orders & Consultations</strong><br>
+      <strong>Location:</strong> Omar Fashion, Spintex, Accra, Ghana<br>
+      <strong>Phone:</strong> <a href="tel:+233248747238">+233 248 747 238</a><br>
+      <strong>WhatsApp:</strong> <a href="https://wa.me/233248747238">Message Us</a><br>
+      <strong>Hours:</strong> 7AM - 8PM, Monday to Saturday
+    </div>
+    <p style="font-size:0.97rem;opacity:0.85;">&copy; 2025 Omar Fashion. All rights reserved.</p>
+  </footer>
+
+  <a href="https://wa.me/233248747238" class="whatsapp-float" target="_blank">
+    <svg viewBox="0 0 24 24">
+      <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.16 1.6 5.97L0 24l6.26-1.64A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 22c-1.85 0-3.68-.5-5.26-1.44l-.37-.22-3.72.98.99-3.62-.24-.38C2.5 15.68 2 13.85 2 12 2 6.48 6.48 2 12 2c2.21 0 4.29.72 6.01 2.05A9.93 9.93 0 0 1 22 12c0 5.52-4.48 10-10 10zm5.2-7.4c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.34.42-.51.14-.17.18-.29.28-.48.09-.19.05-.36-.02-.5-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.34-.26.27-1 1-.97 2.44.03 1.44 1.03 2.84 1.18 3.04.15.2 2.03 3.1 5.03 4.23.7.24 1.24.38 1.67.49.7.18 1.34.15 1.85.09.56-.07 1.65-.67 1.88-1.32.23-.65.23-1.21.16-1.32-.07-.11-.25-.18-.53-.32z"/>
+    </svg>
+  </a>
+
+
+
+  <div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="">
+    </div>
+  </div>
+  <script>
+    // Image popup functionality
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const closeBtn = document.getElementsByClassName('close')[0];
+    
+    document.querySelectorAll('.gallery-item img').forEach(img => {
+      img.addEventListener('click', function() {
+        modal.style.display = 'block';
+        modalImg.src = this.src;
+      });
+    });
+    
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Existing scripts
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        this.style.boxShadow = '0 16px 48px rgba(255,206,0,0.18)';
+        this.style.transform = 'scale(1.03)';
+        this.style.zIndex = 2;
+      });
+      item.addEventListener('mouseleave', function() {
+        this.style.boxShadow = '0 8px 32px rgba(0,0,0,0.10)';
+        this.style.transform = 'scale(1)';
+        this.style.zIndex = 1;
+      });
+    });
+  </script>
+</body>
+
+</html>
